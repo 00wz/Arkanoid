@@ -21,13 +21,21 @@ public class CarriageController : MonoBehaviour
     }
 
     private void FixedUpdate()
-    {
+    {/*
+        carriage.transform.position = spline.EvaluatePosition(slinePositionDuration).ToVector3();
+        carriage.transform.rotation =
+             Quaternion.LookRotation(spline.EvaluateTangent(slinePositionDuration).ToVector3(), Vector3.up);
+        */
+        
+        carriage.MovePosition(spline.EvaluatePosition(slinePositionDuration).ToVector3());
+
+        carriage.MoveRotation(
+            Quaternion.LookRotation(spline.EvaluateTangent(slinePositionDuration).ToVector3(), Vector3.up));
+        
         /*
         var targetVelocity = 
             (spline.EvaluatePosition(t).ToVector3() - carriage.position) / Time.fixedDeltaTime;
         carriage.velocity = targetVelocity;*/
-
-        carriage.MovePosition(spline.EvaluatePosition(slinePositionDuration).ToVector3());
 
         /*var targetAngularSpeed = QuaternionDiff(
             Quaternion.LookRotation(spline.EvaluateTangent(t).ToVector3(), Vector3.up),
@@ -38,9 +46,6 @@ public class CarriageController : MonoBehaviour
             Quaternion.LookRotation(spline.EvaluateTangent(t).ToVector3(), Vector3.up),
             1f / Time.fixedDeltaTime);
         carriage.angularVelocity = targetAngularSpeed.eulerAngles;*/
-
-        carriage.MoveRotation(
-            Quaternion.LookRotation(spline.EvaluateTangent(slinePositionDuration).ToVector3(), Vector3.up));
 
         /*
         var targetAngularSpeed =
