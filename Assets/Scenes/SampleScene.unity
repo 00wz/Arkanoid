@@ -466,7 +466,7 @@ GameObject:
   - component: {fileID: 424939531}
   - component: {fileID: 424939530}
   - component: {fileID: 424939529}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1018,7 +1018,7 @@ GameObject:
   - component: {fileID: 1921236927}
   - component: {fileID: 1921236928}
   - component: {fileID: 1921236929}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ball
   m_TagString: Untagged
   m_Icon: {fileID: 0}

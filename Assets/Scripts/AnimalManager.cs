@@ -17,6 +17,7 @@ public class AnimalManager : MonoBehaviour
 
     private void Start()
     {
+        for(int i = 0; i < 10; i++)
         SpawnAnimal();
     }
 
@@ -24,13 +25,17 @@ public class AnimalManager : MonoBehaviour
     {
         var animal = Instantiate<Animal>(animalPrefab, GetRandomFieldPoint(), Quaternion.identity);
         _animals.Add(animal);
-        animal.GoTo(GetRandomFieldPoint(), null);
+        ManageAnimal(animal);
+    }
+
+    private void ManageAnimal(Animal animal)
+    {
+        animal.GoTo(GetRandomFieldPoint(), ManageAnimal);
     }
 
     private Vector3 GetRandomFieldPoint()
     {
-        Vector3 randomCorclePoint = Random.insideUnitCircle;
-        randomCorclePoint = new Vector3(randomCorclePoint.x, 0f, randomCorclePoint.y);
+        var randomCorclePoint = Utils.GetRandomInsideUnitCircle();
         return centerOfField + (randomCorclePoint * radiusOfField);
     }
 
