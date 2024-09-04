@@ -14,20 +14,14 @@ public class BallsManager : MonoBehaviour
     [SerializeField]
     private bool drowGameZone;
     [SerializeField]
-    private GameObject gameOverWindow;
-    [SerializeField]
     private Transform ballSpawnPosition;
+
+    public Action OnAllBallsOut;
 
     private List<Ball> _balls = new();
     private const float DESTROY_DELAY = 5f;
 
-    void Start()
-    {
-        gameOverWindow.SetActive(false);
-        SpawnBall();
-    }
-
-    private void SpawnBall()
+    public void SpawnBall()
     {
         Quaternion direction = 
             Quaternion.LookRotation(Utils.GetRandomInsideUnitCircle(), Vector3.up);
@@ -36,6 +30,11 @@ public class BallsManager : MonoBehaviour
     }
 
     void Update()
+    {
+        CheckBalls();
+    }
+
+    private void CheckBalls()
     {
         float sqrRadiusOfGameZone = radiusOfGameZone * radiusOfGameZone;
         for(int i = 0; i < _balls.Count; )
@@ -48,15 +47,16 @@ public class BallsManager : MonoBehaviour
             }
             i++;
         }
+
         if(_balls.Count == 0)
         {
-            OnGameOver();
+            AllBallsOut();
         }
     }
 
-    private void OnGameOver()
+    private void AllBallsOut()
     {
-        gameOverWindow.SetActive(true);
+        OnAllBallsOut?.Invoke();
     }
 
     private void OnDrawGizmos()

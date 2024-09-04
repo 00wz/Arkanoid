@@ -16,6 +16,8 @@ public class Animal : MonoBehaviour
     [SerializeField]
     private float rotationSpeedDgr = 180f;
 
+    public Action<Animal> OnDie;
+
     private Rigidbody _rigidbody;
     private CancellationTokenSource _tokenSource;
     private const int BALL_LAYER_NUMBER = 3;
@@ -87,6 +89,7 @@ public class Animal : MonoBehaviour
     private void Die()
     {
         StopAllTasks();
+        OnDie?.Invoke(this);
         Destroy(gameObject);
     }
 
