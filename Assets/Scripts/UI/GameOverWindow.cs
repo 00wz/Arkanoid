@@ -10,6 +10,13 @@ public class GameOverWindow : MonoBehaviour
     private Button RestartButton;
     [SerializeField]
     private Button ExitButton;
+    [SerializeField]
+    private Text CurrentScore;
+    [SerializeField]
+    private Text BestScore;
+
+    private const string CURRENT_SCORE_LABEL = "You score: ";
+    private const string BEST_SCORE_LABEL = "Best score: ";
 
     private void Awake()
     {
@@ -25,5 +32,11 @@ public class GameOverWindow : MonoBehaviour
     private void RestartGame()
     {
         SceneManager.LoadScene(1);
+    }
+
+    public void SetScores(int best, int current)
+    {
+        CurrentScore.text = CURRENT_SCORE_LABEL + current.ToString();
+        BestScore.text = BEST_SCORE_LABEL + best.ToString();
     }
 }

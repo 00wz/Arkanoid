@@ -7,7 +7,7 @@ using UnityEngine;
 public class Main : MonoBehaviour
 {
     [SerializeField]
-    private GameObject gameOverWindow;
+    private GameOverWindow gameOverWindow;
     [SerializeField]
     public BallsManager ballsManager;
     [SerializeField]
@@ -25,10 +25,11 @@ public class Main : MonoBehaviour
 
     private int _currentWave = -1;
     private int _score = 0;
+    private const string BEST_SCORE_SAVE_KEY = "best_score";
 
     private async UniTask Start()
     {
-        gameOverWindow.SetActive(false);
+        gameOverWindow.gameObject.SetActive(false);
         animalManager.OnDeathAnimal += OnDeathAnimal;
         ballsManager.OnAllBallsOut += ReduceHealth;
         bonusManager.Init(this);
@@ -64,17 +65,38 @@ public class Main : MonoBehaviour
 
     private void ReduceHealth()
     {
+        ReduceHealthAsync();
+    }
+
+    private async UniTask ReduceHealthAsync()
+    {
         health--;
-        if(health <= 0)
+        hud.SetHealth(health);
+
+        await UniTask.Delay(TimeSpan.FromSeconds(healthDownDelaySeconds));
+
+        if (health <= 0)
         {
-            hud.gameObject.SetActive(false);
-            gameOverWindow.SetActive(true);
+            GameOver();
         }
         else
         {
-            hud.SetHealth(health);
-            ballsManager.SpawnBall(healthDownDelaySeconds);
+            ballsManager.SpawnBall();
         }
+    }
+
+    private void GameOver()
+    {
+        var bestScore = PlayerPrefs.GetInt(BEST_SCORE_SAVE_KEY, 0);
+        if(_score > bestScore)
+        {
+            PlayerPrefs.SetInt(BEST_SCORE_SAVE_KEY, _score);
+            bestScore = _score;
+        }
+
+        hud.gameObject.SetActive(false);
+        gameOverWindow.SetScores(bestScore, _score);
+        gameOverWindow.gameObject.SetActive(true);
     }
 }
 
