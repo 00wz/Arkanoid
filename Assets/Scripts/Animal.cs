@@ -15,6 +15,9 @@ public class Animal : MonoBehaviour
     private float walkSpeed = 5;
     [SerializeField]
     private float rotationSpeedDgr = 180f;
+    [SerializeField]
+    [Range(0f, 1f)]
+    public float bonusProbability = 0.1f;
 
     public Action<Animal> OnDie;
 

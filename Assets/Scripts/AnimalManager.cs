@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,14 +13,26 @@ public class AnimalManager : MonoBehaviour
     [SerializeField]
     private bool drowField;
     [SerializeField]
-    private Animal animalPrefab;
+    private float spawnIntervalSeconds = 0.2f;
 
     public int AnimalsCount => _animals.Count;
     public Action<Animal> OnDeathAnimal;
 
     private List<Animal> _animals = new();
 
-    public void SpawnAnimal()
+    public async UniTask SpawnAnimalWave(AnimalWave animalWave)
+    {
+        for(int i = 0; i < animalWave.AnimalCounts.Count; i++)
+        {
+            for(int k = 0; k < animalWave.AnimalCounts[i].Count; k++)
+            {
+                SpawnAnimal(animalWave.AnimalCounts[i].AnimalPrefab);
+                await UniTask.Delay(TimeSpan.FromSeconds(spawnIntervalSeconds));
+            }
+        }
+    }
+
+    public void SpawnAnimal(Animal animalPrefab)
     {
         var animal = Instantiate<Animal>(animalPrefab, GetRandomFieldPoint(), Quaternion.identity);
         _animals.Add(animal);

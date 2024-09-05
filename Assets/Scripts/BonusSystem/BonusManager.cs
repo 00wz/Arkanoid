@@ -8,8 +8,8 @@ public class BonusManager : MonoBehaviour
     [Serializable]
     private struct BonusProbability
     {
-        public Bonus bonusPrefab;
-        public float probabilityWeight;
+        public Bonus BonusPrefab;
+        public float ProbabilityWeight;
     }
 
     [SerializeField]
@@ -29,7 +29,7 @@ public class BonusManager : MonoBehaviour
         _weightSum = 0f;
         for(int i = 0; i < bonusesPrefabs.Count; i++)
         {
-            _weightSum += bonusesPrefabs[i].probabilityWeight;
+            _weightSum += bonusesPrefabs[i].ProbabilityWeight;
         }
     }
 
@@ -39,10 +39,10 @@ public class BonusManager : MonoBehaviour
         float currentWeight = 0f;
         for(int i = 0; i < bonusesPrefabs.Count; i++)
         {
-            currentWeight += bonusesPrefabs[i].probabilityWeight;
+            currentWeight += bonusesPrefabs[i].ProbabilityWeight;
             if(rundomNum <= currentWeight)
             {
-                SpawnBonus(bonusesPrefabs[i].bonusPrefab, position);
+                SpawnBonus(bonusesPrefabs[i].BonusPrefab, position);
                 break;
             }
         }

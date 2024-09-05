@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -21,8 +22,9 @@ public class BallsManager : MonoBehaviour
     private List<Ball> _balls = new();
     private const float DESTROY_DELAY = 5f;
 
-    public void SpawnBall()
+    public async UniTask SpawnBall(float delay = 0f)
     {
+        await UniTask.Delay(TimeSpan.FromSeconds(delay));
         Quaternion direction = 
             Quaternion.LookRotation(Utils.GetRandomInsideUnitCircle(), Vector3.up);
         Ball ball = Instantiate(ballPrefab, ballSpawnPosition.position, direction);
@@ -36,6 +38,11 @@ public class BallsManager : MonoBehaviour
 
     private void CheckBalls()
     {
+        if(_balls.Count == 0)
+        {
+            return;
+        }
+
         float sqrRadiusOfGameZone = radiusOfGameZone * radiusOfGameZone;
         for(int i = 0; i < _balls.Count; )
         {

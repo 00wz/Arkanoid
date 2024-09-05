@@ -16,7 +16,6 @@ public abstract class Bonus : MonoBehaviour
     {
         if(other.gameObject.layer == BALL_LAYER_NUMBER)
         {
-            Debug.Log("bonusTrigger");
             ActivateBonus();
             Destroy(gameObject);
         }
