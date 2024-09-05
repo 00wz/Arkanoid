@@ -14,7 +14,8 @@ public class AnimalManager : MonoBehaviour
     [SerializeField]
     private Animal animalPrefab;
 
-    public Action OnDeathAllAnimals;
+    public int AnimalsCount => _animals.Count;
+    public Action<Animal> OnDeathAnimal;
 
     private List<Animal> _animals = new();
 
@@ -34,10 +35,7 @@ public class AnimalManager : MonoBehaviour
     private void OnDieAnimal(Animal animal)
     {
         _animals.Remove(animal);
-        if(_animals.Count == 0)
-        {
-            OnDeathAllAnimals?.Invoke();
-        }
+        OnDeathAnimal?.Invoke(animal);
     }
 
     private Vector3 GetRandomFieldPoint()
