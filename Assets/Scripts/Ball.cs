@@ -5,8 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Ball : MonoBehaviour
 {
-    [SerializeField]
-    public float moveSpeed = 2f;
+    public static float moveSpeed;
 
     private Vector3 _moveDirection;
     private Rigidbody _rigidbody;

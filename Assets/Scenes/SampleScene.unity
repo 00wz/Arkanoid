@@ -2308,6 +2308,8 @@ MonoBehaviour:
   radiusOfGameZone: 21.95
   drowGameZone: 1
   ballSpawnPosition: {fileID: 1756436691}
+  ballSpeed: 10
+  ballAcceleration: 0.2
 --- !u!4 &2028750902
 Transform:
   m_ObjectHideFlags: 0

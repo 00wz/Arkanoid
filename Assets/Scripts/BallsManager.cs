@@ -15,6 +15,10 @@ public class BallsManager : MonoBehaviour
     private bool drowGameZone;
     [SerializeField]
     private Transform ballSpawnPosition;
+    [SerializeField]
+    public float ballSpeed = 2f;
+    [SerializeField]
+    public float ballAcceleration = 0.04f;
 
     public Action OnAllBallsOut;
 
@@ -31,6 +35,8 @@ public class BallsManager : MonoBehaviour
 
     void Update()
     {
+        ballSpeed += ballAcceleration * Time.deltaTime;
+        Ball.moveSpeed = ballSpeed;
         CheckBalls();
     }
 
