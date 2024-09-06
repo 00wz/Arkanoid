@@ -160,6 +160,12 @@ MonoBehaviour:
     - AnimalPrefab: {fileID: 4669886427711649457, guid: cca3b43268251a34bb0d49a1d091d769, type: 3}
       Count: 10
     MinCount: 5
+  - AnimalCounts:
+    - AnimalPrefab: {fileID: 4669886427711649457, guid: cca3b43268251a34bb0d49a1d091d769, type: 3}
+      Count: 10
+    - AnimalPrefab: {fileID: 6787445153917028464, guid: 738a1ad909a36b44693f17c3f00245fc, type: 3}
+      Count: 1
+    MinCount: 10
   hud: {fileID: 1982802964}
   health: 3
   healthDownDelaySeconds: 1
