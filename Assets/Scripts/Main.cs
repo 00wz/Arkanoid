@@ -9,6 +9,8 @@ public class Main : MonoBehaviour
     [SerializeField]
     private GameOverWindow gameOverWindow;
     [SerializeField]
+    private PauseMenu pauseMenu;
+    [SerializeField]
     public BallsManager ballsManager;
     [SerializeField]
     private AnimalManager animalManager;
@@ -31,9 +33,9 @@ public class Main : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Escape) && !gameOverWindow.gameObject.activeSelf)
         {
-            carriageController.LevelUp();
+            pauseMenu.TogglePause();
         }
     }
 
@@ -46,6 +48,7 @@ public class Main : MonoBehaviour
         hud.gameObject.SetActive(true);
         hud.SetHealth(health);
         hud.SetScore(_score);
+        pauseMenu.Unpause();
 
         await StartNewxtWave();
         ballsManager.SpawnBall();
@@ -107,6 +110,7 @@ public class Main : MonoBehaviour
         hud.gameObject.SetActive(false);
         gameOverWindow.SetScores(bestScore, _score);
         gameOverWindow.gameObject.SetActive(true);
+        Cursor.visible = true;
     }
 }
 

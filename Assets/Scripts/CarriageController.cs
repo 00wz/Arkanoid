@@ -54,7 +54,10 @@ public class CarriageController : MonoBehaviour
 
     private void Update()
     {
-        slinePositionDuration -= Input.GetAxis("Mouse X") * InputSensitivity;
+        if(Time.timeScale != 0f)//pause check
+        {
+            slinePositionDuration -= Input.GetAxis("Mouse X") * InputSensitivity;
+        }
     }
 
     private void FixedUpdate()
