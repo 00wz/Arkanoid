@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,11 +11,20 @@ public class PauseMenu : MonoBehaviour
     private Button ContinueButton;
     [SerializeField]
     private Button ExitButton;
+    [SerializeField]
+    private Slider MouseSencetivity;
+
+    public event Action<float> OnMouseSencetivityChanged;
 
     private void Awake()
     {
         ContinueButton.onClick.AddListener(Unpause);
         ExitButton.onClick.AddListener(ExitGame);
+    }
+
+    public void Init(float mouseSencetivity)
+    {
+        MouseSencetivity.value = mouseSencetivity;
     }
 
     public void TogglePause()
@@ -41,6 +51,7 @@ public class PauseMenu : MonoBehaviour
         gameObject.SetActive(false);
         Cursor.visible = false;
         Time.timeScale = 1f;
+        OnMouseSencetivityChanged?.Invoke(MouseSencetivity.value);
     }
 
     private void ExitGame()

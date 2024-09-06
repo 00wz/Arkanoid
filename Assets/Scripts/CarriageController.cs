@@ -10,7 +10,7 @@ public class CarriageController : MonoBehaviour
     [SerializeField]
     private Rigidbody carriage;
     [SerializeField]
-    private float InputSensitivity = 0.1f;
+    public float InputSensitivity = 0.1f;
     [SerializeField]
     [Range(0f, 1f)]
     private float slinePositionDuration = 0f;

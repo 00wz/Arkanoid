@@ -30,6 +30,7 @@ public class Main : MonoBehaviour
     private int _currentWave = -1;
     private int _score = 0;
     private const string BEST_SCORE_SAVE_KEY = "best_score";
+    private const string CARRIAGE_SENCETIVITY_SAVE_KEY = "carriage_sencetivity";
 
     private void Update()
     {
@@ -48,10 +49,19 @@ public class Main : MonoBehaviour
         hud.gameObject.SetActive(true);
         hud.SetHealth(health);
         hud.SetScore(_score);
+        pauseMenu.OnMouseSencetivityChanged += SetCarriageSencetivity;
+        pauseMenu.Init(
+            PlayerPrefs.GetFloat(CARRIAGE_SENCETIVITY_SAVE_KEY, carriageController.InputSensitivity));
         pauseMenu.Unpause();
 
         await StartNewxtWave();
         ballsManager.SpawnBall();
+    }
+
+    private void SetCarriageSencetivity(float value)
+    {
+        carriageController.InputSensitivity = value;
+        PlayerPrefs.SetFloat(CARRIAGE_SENCETIVITY_SAVE_KEY, value);
     }
 
     private async UniTask StartNewxtWave()
