@@ -15,6 +15,8 @@ public class Main : MonoBehaviour
     [SerializeField]
     private BonusManager bonusManager;
     [SerializeField]
+    public CarriageController carriageController;
+    [SerializeField]
     private List<AnimalWave> animalWaves;
     [SerializeField]
     private Hud hud;
@@ -26,6 +28,14 @@ public class Main : MonoBehaviour
     private int _currentWave = -1;
     private int _score = 0;
     private const string BEST_SCORE_SAVE_KEY = "best_score";
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            carriageController.LevelUp();
+        }
+    }
 
     private async UniTask Start()
     {

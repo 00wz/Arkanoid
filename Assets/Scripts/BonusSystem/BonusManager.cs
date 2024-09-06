@@ -35,6 +35,7 @@ public class BonusManager : MonoBehaviour
 
     public void SpawnRandomBonus(Vector3 position)
     {
+        //TODO: LevelUpBonus will not spawn if there are enough LevelUpBonuses on the scene to reach the maximum level.
         float rundomNum = UnityEngine.Random.Range(0f, _weightSum);
         float currentWeight = 0f;
         for(int i = 0; i < bonusesPrefabs.Count; i++)
