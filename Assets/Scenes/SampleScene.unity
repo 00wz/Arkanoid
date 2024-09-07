@@ -246,6 +246,7 @@ MonoBehaviour:
   hud: {fileID: 1982802964}
   health: 3
   healthDownDelaySeconds: 1
+  reduceHealthAudioClip: {fileID: 8300000, guid: fcbf4176d22eded44ae11af28e17d16a, type: 3}
 --- !u!4 &120123139
 Transform:
   m_ObjectHideFlags: 0
@@ -1397,7 +1398,7 @@ GameObject:
   m_Component:
   - component: {fileID: 703163063}
   - component: {fileID: 703163064}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Carriage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2296,6 +2297,7 @@ MonoBehaviour:
   carriage: {fileID: 703163064}
   InputSensitivity: 0.01
   slinePositionDuration: 0.75
+  lvlUpAudioClip: {fileID: 8300000, guid: 986ca8510143b1343b9215cde52a3507, type: 3}
 --- !u!4 &1263530005
 Transform:
   m_ObjectHideFlags: 0
@@ -2935,6 +2937,7 @@ MonoBehaviour:
   radiusOfField: 18
   drowField: 0
   spawnIntervalSeconds: 0.1
+  spawnAnimalAudioClip: {fileID: 8300000, guid: 067a046f53eae404699138c99917ce31, type: 3}
 --- !u!4 &1832874164
 Transform:
   m_ObjectHideFlags: 0
@@ -2962,7 +2965,7 @@ GameObject:
   - component: {fileID: 1850886155}
   - component: {fileID: 1850886154}
   - component: {fileID: 1850886153}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3247,6 +3250,7 @@ MonoBehaviour:
   ballSpawnPosition: {fileID: 1756436691}
   ballSpeed: 10
   ballAcceleration: 0.2
+  spawnBallAudioClip: {fileID: 8300000, guid: 21f0b2289c0a62d42b6f0b3690aa4cf2, type: 3}
 --- !u!4 &2028750902
 Transform:
   m_ObjectHideFlags: 0

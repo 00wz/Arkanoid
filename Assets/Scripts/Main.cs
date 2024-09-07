@@ -26,6 +26,8 @@ public class Main : MonoBehaviour
     private int health = 3;
     [SerializeField]
     private float healthDownDelaySeconds = 2f;
+    [SerializeField]
+    private AudioClip reduceHealthAudioClip;
 
     private int _currentWave = -1;
     private int _score = 0;
@@ -95,6 +97,7 @@ public class Main : MonoBehaviour
     {
         health--;
         hud.SetHealth(health);
+        Utils.PlayClip2D(reduceHealthAudioClip);
 
         await UniTask.Delay(TimeSpan.FromSeconds(healthDownDelaySeconds));
 

@@ -14,6 +14,8 @@ public class AnimalManager : MonoBehaviour
     private bool drowField;
     [SerializeField]
     private float spawnIntervalSeconds = 0.2f;
+    [SerializeField]
+    private AudioClip spawnAnimalAudioClip;
 
     public int AnimalsCount => _animals.Count;
     public Action<Animal> OnDeathAnimal;
@@ -38,6 +40,7 @@ public class AnimalManager : MonoBehaviour
         _animals.Add(animal);
         animal.OnDie += OnDieAnimal;
         MoveAnimal(animal);
+        Utils.PlayClip2D(spawnAnimalAudioClip);
     }
 
     private void MoveAnimal(Animal animal)

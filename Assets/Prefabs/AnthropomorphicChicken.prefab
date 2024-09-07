@@ -1042,3 +1042,4 @@ MonoBehaviour:
   walkSpeed: 5
   rotationSpeedDgr: 180
   bonusProbability: 1
+  deathAudioClip: {fileID: 8300000, guid: f9e61b81568466e4ba1de5774e2b9447, type: 3}

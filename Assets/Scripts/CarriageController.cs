@@ -14,6 +14,8 @@ public class CarriageController : MonoBehaviour
     [SerializeField]
     [Range(0f, 1f)]
     private float slinePositionDuration = 0f;
+    [SerializeField]
+    private AudioClip lvlUpAudioClip;
 
     private readonly Rigidbody[] carriages = new Rigidbody[8];
     private readonly float[] deltaDurations = 
@@ -36,6 +38,7 @@ public class CarriageController : MonoBehaviour
     {
         int nextLevel = Mathf.Min(numberOfCarriagesPerLevel.Length - 1, _currentLevel + 1);
         SetLevel(nextLevel);
+        Utils.PlayClip2D(lvlUpAudioClip);
     }
 
     private void SetLevel(int num)

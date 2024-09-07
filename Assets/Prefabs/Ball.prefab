@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d962b8eb1c659844aba5afcdac56ca13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
+  CarriageHitAudioClip: {fileID: 8300000, guid: 6b6edfbeb693d6443b4764d9153d645c, type: 3}
 --- !u!54 &2935369580826372524
 Rigidbody:
   m_ObjectHideFlags: 0

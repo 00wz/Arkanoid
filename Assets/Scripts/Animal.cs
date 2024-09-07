@@ -18,6 +18,8 @@ public class Animal : MonoBehaviour
     [SerializeField]
     [Range(0f, 1f)]
     public float bonusProbability = 0.1f;
+    [SerializeField]
+    private AudioClip deathAudioClip;
 
     public Action<Animal> OnDie;
 
@@ -91,6 +93,7 @@ public class Animal : MonoBehaviour
 
     private void Die()
     {
+        Utils.PlayClip2D(deathAudioClip);
         StopAllTasks();
         OnDie?.Invoke(this);
         Destroy(gameObject);

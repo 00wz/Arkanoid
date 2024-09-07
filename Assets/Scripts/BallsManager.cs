@@ -19,6 +19,8 @@ public class BallsManager : MonoBehaviour
     public float ballSpeed = 2f;
     [SerializeField]
     public float ballAcceleration = 0.04f;
+    [SerializeField]
+    private AudioClip spawnBallAudioClip;
 
     public Action OnAllBallsOut;
 
@@ -31,6 +33,7 @@ public class BallsManager : MonoBehaviour
             Quaternion.LookRotation(Utils.GetRandomInsideUnitCircle(), Vector3.up);
         Ball ball = Instantiate(ballPrefab, ballSpawnPosition.position, direction);
         _balls.Add(ball);
+        Utils.PlayClip2D(spawnBallAudioClip);
     }
 
     void Update()
