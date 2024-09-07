@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -21,6 +22,8 @@ public class BallsManager : MonoBehaviour
     public float ballAcceleration = 0.04f;
     [SerializeField]
     private AudioClip spawnBallAudioClip;
+    [SerializeField]
+    private float multiplyBallDelaySeconds = 0.2f;
 
     public Action OnAllBallsOut;
 
@@ -29,11 +32,34 @@ public class BallsManager : MonoBehaviour
 
     public void SpawnBall()
     {
+        SpawnBall(ballSpawnPosition.position);
+    }
+
+    private void SpawnBall(Vector3 position)
+    {
         Quaternion direction = 
             Quaternion.LookRotation(Utils.GetRandomInsideUnitCircle(), Vector3.up);
-        Ball ball = Instantiate(ballPrefab, ballSpawnPosition.position, direction);
+        Ball ball = Instantiate(ballPrefab, position, direction);
         _balls.Add(ball);
         Utils.PlayClip2D(spawnBallAudioClip);
+    }
+
+    public async UniTask MultiplyBalls(int x)
+    {
+        x--;
+        var tmp = _balls.ToArray();
+        for(int i = 0; i < tmp.Length; i++)
+        {
+            for(int k = 0; k < x; k++)
+            {
+                if(tmp[i] == null)
+                {
+                    break;
+                }
+                SpawnBall(tmp[i].transform.position);
+            }
+            await UniTask.Delay(TimeSpan.FromSeconds(multiplyBallDelaySeconds));
+        }
     }
 
     void Update()

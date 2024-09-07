@@ -659,9 +659,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bonusesPrefabs:
   - BonusPrefab: {fileID: 605877774231598097, guid: fa4ca67ef815e9d42ad5acd48231fa68, type: 3}
-    ProbabilityWeight: 9
+    ProbabilityWeight: 5
   - BonusPrefab: {fileID: 5506124943143903739, guid: 2ea5c204baa25694f8b7fcf98b8db5ca, type: 3}
-    ProbabilityWeight: 1
+    ProbabilityWeight: 2
+  - BonusPrefab: {fileID: 2109111563961884499, guid: 025d7840ead19a241a54810cf4429a66, type: 3}
+    ProbabilityWeight: 3
   _weightSum: 10
 --- !u!1 &277224328
 GameObject:
@@ -3251,6 +3253,7 @@ MonoBehaviour:
   ballSpeed: 10
   ballAcceleration: 0.2
   spawnBallAudioClip: {fileID: 8300000, guid: 21f0b2289c0a62d42b6f0b3690aa4cf2, type: 3}
+  multiplyBallDelaySeconds: 0.2
 --- !u!4 &2028750902
 Transform:
   m_ObjectHideFlags: 0
